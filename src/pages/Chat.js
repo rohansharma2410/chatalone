@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../services/firebase";
 import { db } from "../services/firebase";
-// import { firestore } from "../services/firebase";
 
 export default class Chat extends Component {
   constructor(props) {
@@ -34,7 +33,8 @@ export default class Chat extends Component {
       }
 
       await this.setFriendName();
-      db.ref(`chats/${chatid}`).on("value", (snapshot) => {
+      const chatRef = db.ref(`chats/${chatid}`);
+      chatRef.on("value", (snapshot) => {
         let chats = [];
         snapshot.forEach((snap) => {
           chats.push(snap.val());
@@ -68,7 +68,9 @@ export default class Chat extends Component {
           this.props.history.push("/chat");
           throw new Error("You shouldn't be here 🤨");
         }
-        await db.ref(`chats/${chatid}`).push({
+        const chatRef = db.ref(`chats/${chatid}`);
+        const newMessageRef = chatRef.push();
+        await newMessageRef.set({
           content: this.state.content,
           timestamp: Date.now(),
           uid: this.state.user.uid,
@@ -92,20 +94,22 @@ export default class Chat extends Component {
       .ref(`users/${friendID}`)
       .once("value")
       .then((snapshot) => {
-        this.state.friendName = snapshot.val().uname;
+        this.setState({ friendName: snapshot.val().uname });
       });
   }
 
   formatTime(timestamp) {
     const d = new Date(timestamp);
-    const time = d.toLocaleTimeString().replace(/(.*)\D\d+/, "$1");
+    const hours = d.getHours().toString().padStart(2, "0");
+    const minutes = d.getMinutes().toString().padStart(2, "0");
+    const time = `${hours}:${minutes}`;
     return time;
   }
 
   render() {
     return (
       <div>
-        {/* loading indicator */}
+        {/* Loading indicator */}
         {this.state.loadingChats ? <div className="spinner"></div> : ""}
         <section className="chat-container">
           <header className="chat-header">
@@ -126,13 +130,14 @@ export default class Chat extends Component {
           ) : null}
 
           <main className="chatarea" ref={this.myRef}>
-            {/* chat area */}
+            {/* Chat area */}
             {this.state.chats.map((chat) => {
               return (
                 <div
                   key={chat.timestamp}
                   className={
-                    "msg " + (this.state.user.uid === chat.uid ? "right-msg" : "left-msg")
+                    "msg " +
+                    (this.state.user.uid === chat.uid ? "right-msg" : "left-msg")
                   }
                 >
                   <div
@@ -147,7 +152,9 @@ export default class Chat extends Component {
                         .equalTo(chat.timestamp)
                         .once("value");
                       this.setState({
-                        deletionMsgRef: `chats/${chatid}/${Object.keys(x.val())[0]}`,
+                        deletionMsgRef: `chats/${chatid}/${Object.keys(
+                          x.val()
+                        )[0]}`,
                       });
                     }}
                   >

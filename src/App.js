@@ -118,5 +118,3 @@ class App extends Component {
 }
 
 export default App;
-//"predeploy": "npm run build",
-//"deploy": "react-scripts build && firebase deploy",
