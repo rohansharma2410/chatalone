@@ -1,0 +1,43 @@
+[debug] [2023-09-19T10:33:10.391Z] ----------------------------------------------------------------------
+[debug] [2023-09-19T10:33:10.394Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Rohan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-09-19T10:33:10.394Z] CLI Version:   12.5.4
+[debug] [2023-09-19T10:33:10.394Z] Platform:      win32
+[debug] [2023-09-19T10:33:10.394Z] Node Version:  v20.5.1
+[debug] [2023-09-19T10:33:10.394Z] Time:          Tue Sep 19 2023 16:03:10 GMT+0530 (India Standard Time)
+[debug] [2023-09-19T10:33:10.394Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-09-19T10:33:10.454Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-09-19T10:33:10.454Z] > authorizing via signed-in user (sharmar981099@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Rohan\Desktop\chatalone
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-09-19T10:33:49.349Z] Using project from CLI flag: chatalone
+[debug] [2023-09-19T10:33:49.351Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/chatalone [none]
+[debug] [2023-09-19T10:33:50.110Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/chatalone 403
+[debug] [2023-09-19T10:33:50.110Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/chatalone {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2023-09-19T10:33:50.110Z] HTTP Error: 403, The caller does not have permission
+[debug] [2023-09-19T10:33:50.423Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\Rohan\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Rohan\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:285:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project chatalone. Please make sure the project exists and your account has permission to access it.
