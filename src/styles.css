@@ -1,0 +1,295 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root {
+  --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --light-bg-img: url("../src/bg.svg");
+  --dark-bg-img: url("../src/darkbg.svg");
+  --border: 2px solid #ddd;
+  --primary-bg: #0069d9;
+  --secondary-bg: #32c846;
+  --incoming-msg-bg: #0069d9;
+  --outgoing-msg-bg: #32c846;
+  /* Background Patterns generated from https://www.flaticon.com/pattern/ */
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  /* font-family: "Raleway", sans-serif; */
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-image: var(--body-bg);
+}
+
+.btn.btn-primary {
+  background: var(--primary-bg);
+}
+.btn.btn-secondary {
+  background: var(--secondary-bg);
+}
+
+.btn.btn-primary,
+.btn.btn-secondary,
+.btn.btn-danger {
+  border: none;
+  opacity: 0.9;
+}
+.btn.btn-primary:hover,
+.btn.btn-secondary:hover,
+.btn.btn-danger:hover {
+  opacity: 1;
+}
+
+.animated-bg {
+  width: 100vw;
+  height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+  min-height: -webkit-fill-available; /* progressive enhancement over 100vh, which should work on iOS devices. */
+  height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: var(--light-bg-img);
+  background-attachment: fixed;
+  background-size: 170%;
+
+  animation: animatedBackground 15s linear alternate infinite;
+  -moz-animation: animatedBackground 15s linear alternate infinite;
+  -webkit-animation: animatedBackground 15s linear alternate infinite;
+  -ms-animation: animatedBackground 15s linear alternate infinite;
+  -o-animation: animatedBackground 15s linear alternate infinite;
+}
+
+.animated-bg form {
+  max-width: 500px;
+  border-radius: 10px;
+  border: var(--border);
+}
+
+form input.form-control:focus,
+form button.btn {
+  box-shadow: none !important;
+}
+
+.chat-container {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+  min-height: -webkit-fill-available; /* progressive enhancement over 100vh, which should work on iOS devices. */
+  height: calc(var(--vh, 1vh) * 100);
+  max-width: 500px;
+  border: var(--border);
+  background: var(--light-bg-img);
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: var(--border);
+  background: #eee;
+  color: #666;
+}
+
+.chat-header a {
+  color: var(--primary-bg);
+}
+
+.chatarea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.list-group-item small:last-of-type {
+  overflow: hidden;
+  width: 150px;
+  text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+}
+
+.msg {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 4px;
+}
+
+.msg:last-of-type {
+  margin: 0;
+}
+
+.chat-bubble {
+  max-width: 270px;
+  min-width: 100px;
+  color: white;
+  word-wrap: break-word;
+  padding: 6px 18px;
+  border-radius: 30px;
+  background: var(--incoming-msg-bg);
+}
+
+.chat-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.chat-info-name {
+  margin-right: 5px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.chat-info-time {
+  font-size: 0.6rem;
+}
+
+.left-msg .chat-bubble {
+  border-bottom-left-radius: 5px;
+}
+
+.right-msg {
+  flex-direction: row-reverse;
+}
+
+.right-msg .chat-bubble {
+  background: var(--outgoing-msg-bg);
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+
+.chat-inputarea {
+  display: flex;
+  border-radius: 30px;
+  margin: 2px 3px;
+  background: transparent;
+}
+
+.chat-inputarea * {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1em;
+}
+
+.chat-input {
+  width: 80%;
+  background: #eee;
+  margin-right: 2px;
+}
+
+.chat-input:focus {
+  outline: none;
+}
+
+.chat-sendbtn {
+  width: 20%;
+  background: var(--outgoing-msg-bg);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Make text unselectable */
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* Simple loading spinner */
+.spinner {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: calc(50% - 35px);
+  left: calc(50% - 35px);
+  border: 8px solid var(--primary-bg);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 700ms linear infinite;
+  -webkit-animation: spin 700ms linear infinite;
+}
+
+@media screen and (max-width: 700px) {
+  .animated-bg {
+    background-size: 400%;
+  }
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -300px 0;
+  }
+}
+@-moz-keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -300px 0;
+  }
+}
+@-webkit-keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -300px 0;
+  }
+}
+@-ms-keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -300px 0;
+  }
+}
+@-o-keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -300px 0;
+  }
+}
